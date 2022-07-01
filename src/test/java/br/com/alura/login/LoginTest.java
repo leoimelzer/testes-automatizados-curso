@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginTest {
     private WebDriver driver;
+
     private static final String URL = "http://localhost:8080/login";
 
     @BeforeAll
