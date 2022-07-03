@@ -1,24 +1,17 @@
-package br.com.alura.login;
+package br.com.leilao.login;
 
+import br.com.leilao.PageObject;
+import br.com.leilao.leiloes.LeiloesPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginPage {
+public class LoginPage extends PageObject {
 
-    private final WebDriver driver;
     private static final String URL_LOGIN = "http://localhost:8080/login";
 
     public LoginPage(){
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        super(null);
         driver.get(URL_LOGIN);
-    }
-
-    public void fechar() {
-        driver.close();
     }
 
     public void preencheFormularioDeLogin(String username, String password) {
@@ -26,8 +19,9 @@ public class LoginPage {
         driver.findElement(By.id("password")).sendKeys(password);
     }
 
-    public void efetuaLogin() {
+    public LeiloesPage efetuarLogin() {
         driver.findElement(By.id("submit")).click();
+        return new LeiloesPage(driver);
     }
 
     public boolean isPaginaDeLogin() {
